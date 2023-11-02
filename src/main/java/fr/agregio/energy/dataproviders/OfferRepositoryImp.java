@@ -13,13 +13,6 @@ public class OfferRepositoryImp implements OfferRepository {
         this.offers = new ArrayList<>();
     }
 
-    public OfferRepositoryImp(List<Offer> inputOffers) {
-        if (inputOffers == null)
-            inputOffers = new ArrayList<>();
-
-        this.offers = inputOffers;
-    }
-
     @Override
     public Offer saveOffer(Offer offer) {
         this.offers.add(offer);
