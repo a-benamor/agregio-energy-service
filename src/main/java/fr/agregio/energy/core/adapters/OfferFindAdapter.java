@@ -6,7 +6,6 @@ import fr.agregio.energy.core.models.Offer;
 import fr.agregio.energy.usecases.OfferFindUseCase;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class OfferFindAdapter implements OfferFindUseCase {
     private OfferRepository offerRepository;
@@ -17,8 +16,6 @@ public class OfferFindAdapter implements OfferFindUseCase {
 
     @Override
     public List<Offer> findOffersByMarket(MarketType marketType) {
-        var offers = offerRepository.getOffers();
-        return offers.stream().filter(offer -> offer.getMarketType().equals(marketType))
-                .collect(Collectors.toList());
+        return offerRepository.getOffersByMarket(marketType);
     }
 }

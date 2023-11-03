@@ -27,11 +27,11 @@ class OfferCreationUseCaseTest {
     }
 
     private Offer anOfferWithProductionCapacityIsInsufficient() {
-        return DataSet.getNewOffer(MarketType.PRIMARY_RESERVE, 9000, 8000, PowerStationType.SOLAR);
+        return TestUtility.getNewOffer(MarketType.PRIMARY_RESERVE, 9000, 8000, PowerStationType.SOLAR);
     }
 
     private Offer anOfferWithProductionCapacityIsSufficient() {
-        Offer newOffer = DataSet.getNewOffer(MarketType.PRIMARY_RESERVE,8000, 9000, PowerStationType.SOLAR);
+        Offer newOffer = TestUtility.getNewOffer(MarketType.PRIMARY_RESERVE,8000, 9000, PowerStationType.SOLAR);
         return newOffer;
     }
 

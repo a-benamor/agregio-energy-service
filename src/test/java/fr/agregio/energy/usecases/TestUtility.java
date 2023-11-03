@@ -8,7 +8,7 @@ import fr.agregio.energy.core.models.TimeBlock;
 
 import java.util.List;
 
-public class DataSet {
+public class TestUtility {
     static Offer getNewOffer(MarketType marketType, int energyDemand, int productionCapacity, PowerStationType powerStationType) {
         return new Offer(marketType,
                 List.of(getTimeBlock(energyDemand)),
@@ -16,11 +16,11 @@ public class DataSet {
         );
     }
 
-    static PowerStation getPowerStation(int productionCapacity, PowerStationType powerStationType) {
+    public static PowerStation getPowerStation(int productionCapacity, PowerStationType powerStationType) {
         return new PowerStation(powerStationType, productionCapacity);
     }
 
-    static TimeBlock getTimeBlock(int energyDemand) {
+    public static TimeBlock getTimeBlock(int energyDemand) {
         return new TimeBlock(energyDemand, 200d);
     }
 }

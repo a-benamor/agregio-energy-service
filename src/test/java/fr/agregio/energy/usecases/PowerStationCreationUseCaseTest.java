@@ -21,7 +21,7 @@ class PowerStationCreationUseCaseTest {
 
     @Test
     void shouldCreateAPowerStation() {
-        PowerStation newPowerStation = DataSet.getPowerStation(5000,PowerStationType.SOLAR);
+        PowerStation newPowerStation = TestUtility.getPowerStation(5000,PowerStationType.SOLAR);
 
         powerStationCreationUseCase.createPowerStation(newPowerStation);
 

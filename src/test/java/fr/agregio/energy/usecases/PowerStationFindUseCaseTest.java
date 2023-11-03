@@ -34,8 +34,8 @@ class PowerStationFindUseCaseTest {
     }
 
     private void givenOffers() {
-        var firstOffer = DataSet.getNewOffer(MarketType.PRIMARY_RESERVE, 2000, 3000, PowerStationType.SOLAR );
-        var secondOffer = DataSet.getNewOffer(MarketType.QUICK_RESERVE, 1000, 2000, PowerStationType.SOLAR);
+        var firstOffer = TestUtility.getNewOffer(MarketType.PRIMARY_RESERVE, 2000, 3000, PowerStationType.SOLAR );
+        var secondOffer = TestUtility.getNewOffer(MarketType.QUICK_RESERVE, 1000, 2000, PowerStationType.SOLAR);
         offerRepository.saveOffer(firstOffer);
         offerRepository.saveOffer(secondOffer);
     }

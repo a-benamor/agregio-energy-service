@@ -23,8 +23,8 @@ class OfferFindUseCaseTest {
         offerRepository = new OfferRepositoryImp();
         offerFindUseCase = new OfferFindAdapter(offerRepository);
 
-        first = DataSet.getNewOffer(MarketType.PRIMARY_RESERVE, 1000, 2000, PowerStationType.SOLAR);
-        var second = DataSet.getNewOffer(MarketType.SECONDARY_RESERVE, 2000, 3000, PowerStationType.SOLAR);
+        first = TestUtility.getNewOffer(MarketType.PRIMARY_RESERVE, 1000, 2000, PowerStationType.SOLAR);
+        var second = TestUtility.getNewOffer(MarketType.SECONDARY_RESERVE, 2000, 3000, PowerStationType.SOLAR);
         offerRepository.saveOffer(first);
         offerRepository.saveOffer(second);
     }
