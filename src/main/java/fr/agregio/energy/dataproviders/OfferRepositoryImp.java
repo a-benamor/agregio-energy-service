@@ -1,10 +1,12 @@
 package fr.agregio.energy.dataproviders;
 
 import fr.agregio.energy.core.connectors.OfferRepository;
+import fr.agregio.energy.core.models.MarketType;
 import fr.agregio.energy.core.models.Offer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OfferRepositoryImp implements OfferRepository {
     private List<Offer> offers;
@@ -22,5 +24,11 @@ public class OfferRepositoryImp implements OfferRepository {
     @Override
     public List<Offer> getOffers() {
         return this.offers;
+    }
+
+    @Override
+    public List<Offer> getOffersByMarket(MarketType marketType) {
+        return offers.stream().filter(offer -> offer.getMarketType().equals(marketType))
+                .collect(Collectors.toList());
     }
 }

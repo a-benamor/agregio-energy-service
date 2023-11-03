@@ -46,6 +46,10 @@ public class Offer {
         return marketType;
     }
 
+    public List<PowerStation> getPowerStations() {
+        return powerStations;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

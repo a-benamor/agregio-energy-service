@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PowerStationCreationUseCaseTest {
-
     private PowerStationCreationUseCase powerStationCreationUseCase;
     private PowerStationRepository powerStationRepository;
 
@@ -22,7 +21,7 @@ class PowerStationCreationUseCaseTest {
 
     @Test
     void shouldCreateAPowerStation() {
-        PowerStation newPowerStation = new PowerStation(PowerStationType.SOLAR, 5000);
+        PowerStation newPowerStation = DataSet.getPowerStation(5000,PowerStationType.SOLAR);
 
         powerStationCreationUseCase.createPowerStation(newPowerStation);
 

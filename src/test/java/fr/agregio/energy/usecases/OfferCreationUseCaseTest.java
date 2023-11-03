@@ -5,9 +5,7 @@ import fr.agregio.energy.core.connectors.OfferRepository;
 import fr.agregio.energy.core.exceptions.InsufficientProductionCapacityException;
 import fr.agregio.energy.core.models.MarketType;
 import fr.agregio.energy.core.models.Offer;
-import fr.agregio.energy.core.models.PowerStation;
 import fr.agregio.energy.core.models.PowerStationType;
-import fr.agregio.energy.core.models.TimeBlock;
 import fr.agregio.energy.dataproviders.OfferRepositoryImp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,9 +26,18 @@ class OfferCreationUseCaseTest {
         offerCreationUseCase = new OfferCreationAdapter(offerRepository);
     }
 
+    private Offer anOfferWithProductionCapacityIsInsufficient() {
+        return DataSet.getNewOffer(MarketType.PRIMARY_RESERVE, 9000, 8000, PowerStationType.SOLAR);
+    }
+
+    private Offer anOfferWithProductionCapacityIsSufficient() {
+        Offer newOffer = DataSet.getNewOffer(MarketType.PRIMARY_RESERVE,8000, 9000, PowerStationType.SOLAR);
+        return newOffer;
+    }
+
     @Test
     void shouldThrowInsufficientEnergyProductionCapacityExceptionWhenProductionCapacityIsInsufficient() {
-        Offer newOffer = getNewOffer(9000, 8000);
+        Offer newOffer = anOfferWithProductionCapacityIsInsufficient();
 
         assertThrows(InsufficientProductionCapacityException.class,
                 () -> offerCreationUseCase.createOffer(newOffer));
@@ -38,18 +45,11 @@ class OfferCreationUseCaseTest {
 
     @Test
     void shouldCreateAnOfferWhenTheProductionCapacityIsSufficient() {
-        Offer newOffer = getNewOffer(8000, 9000);
+        Offer newOffer = anOfferWithProductionCapacityIsSufficient();
 
         offerCreationUseCase.createOffer(newOffer);
 
         assertOfferIsCreated(newOffer);
-    }
-
-    private Offer getNewOffer(Integer energyDemand, Integer productionCapacity) {
-        TimeBlock timeBlock = new TimeBlock(energyDemand, 200d);
-        PowerStation powerStation = new PowerStation(PowerStationType.SOLAR, productionCapacity);
-        Offer newOffer = new Offer(MarketType.PRIMARY_RESERVE, List.of(timeBlock), List.of(powerStation));
-        return newOffer;
     }
 
     private void assertOfferIsCreated(Offer expectedOffer) {
