@@ -17,7 +17,7 @@ class OfferTest {
         PowerStation powerStation = TestUtility.getPowerStation(8000, PowerStationType.SOLAR);
 
         InvalidDataException expectedException = assertThrows(InvalidDataException.class,
-                () -> new Offer(MarketType.PRIMARY_RESERVE, null,  List.of(powerStation)));
+                () -> offerWithNoTimeBlocks(powerStation));
 
         assertEquals("Offer time blocks cannot be null or empty", expectedException.getMessage());
     }
@@ -27,9 +27,17 @@ class OfferTest {
         TimeBlock timeBlock = TestUtility.getTimeBlock(2000);
 
         InvalidDataException expectedException = assertThrows(InvalidDataException.class,
-                () -> new Offer(MarketType.PRIMARY_RESERVE, List.of(timeBlock), Collections.emptyList()));
+                () -> offerWithNoPowerStations(timeBlock));
 
         assertEquals("Offer power stations cannot be null or empty", expectedException.getMessage());
+    }
+
+    private Offer offerWithNoTimeBlocks(PowerStation powerStation) {
+        return new Offer(MarketType.PRIMARY_RESERVE, null, List.of(powerStation));
+    }
+
+    private Offer offerWithNoPowerStations(TimeBlock timeBlock) {
+        return new Offer(MarketType.PRIMARY_RESERVE, List.of(timeBlock), Collections.emptyList());
     }
 
 }
