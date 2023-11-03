@@ -42,6 +42,10 @@ public class Offer {
                 .sum();
     }
 
+    public MarketType getMarketType() {
+        return marketType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
